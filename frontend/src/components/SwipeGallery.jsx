@@ -12,7 +12,7 @@ const SwipeGallery = () => {
 
   // Live API Fetch
   useEffect(() => {
-    axios.get('http://wedframe-backend.onrender.com/api/gallery/')
+    axios.get('https://wedframe-backend.onrender.com/api/gallery/')
       .then(response => {
         setImages(response.data);
       })

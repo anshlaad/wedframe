@@ -8,7 +8,7 @@ const FunctionGalleries = () => {
 
   // Component load hote hi backend se data fetch karega
   useEffect(() => {
-    axios.get('http://wedframe-backend.onrender.com/api/function-folders/')
+    axios.get('https://wedframe-backend.onrender.com/api/function-folders/')
       .then(response => {
         setFolders(response.data);
       })

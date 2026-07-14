@@ -18,7 +18,7 @@ const HeroCountdown = () => {
 
   // API se live details fetch karna
   useEffect(() => {
-    axios.get('http://wedframe-backend.onrender.com/api/wedding-details/')
+    axios.get('https://wedframe-backend.onrender.com/api/wedding-details/')
       .then(response => {
         if (response.data.length > 0) {
           setDetails(response.data[0]);
