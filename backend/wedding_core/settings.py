@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-daak!l@bq(w&6zg7u$$^8e!8_-!=g*^v5+xw-q9@=wx67cn=^&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['wedframe-backend.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -142,3 +141,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 # 2. Media Setup (For handling image uploads from Admin Panel)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://wedframe-backend.onrender.com',
+    'https://wedframe.vercel.app',
+]
