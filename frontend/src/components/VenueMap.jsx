@@ -16,7 +16,7 @@ const VenueMap = () => {
 
   // 🌟 Fetching from the same WeddingDetails API
   useEffect(() => {
-    axios.get('http://localhost:8000/api/wedding-details/')
+    axios.get('http://wedframe-backend.onrender.com/api/wedding-details/')
       .then(response => {
         if (response.data.length > 0) {
           setVenue(response.data[0]);

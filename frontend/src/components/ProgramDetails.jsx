@@ -7,7 +7,7 @@ const ProgramDetails = () => {
 
   // Component load hote hi Django API se data fetch karega
   useEffect(() => {
-    axios.get('http://localhost:8000/api/programs/')
+    axios.get('http://wedframe-backend.onrender.com/api/programs/')
       .then(response => {
         setEvents(response.data);
       })
