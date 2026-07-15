@@ -77,12 +77,7 @@ const VenueMap = () => {
         </div>
       </div>
 
-      <div className="mt-16 w-full text-center">
-        <div className="w-32 h-[1px] bg-rose-900/50 mx-auto mb-6"></div>
-        <p className="text-xs md:text-sm text-rose-300/50 tracking-wider">
-          Managed & Organized beautifully by <span className="text-amber-500/80 font-bold tracking-widest uppercase">BrilliantEvents</span>
-        </p>
-      </div>
+      
 
     </div>
   );

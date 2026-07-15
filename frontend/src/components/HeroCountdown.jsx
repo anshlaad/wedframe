@@ -27,7 +27,6 @@ const HeroCountdown = () => {
       .catch(error => console.log("Backend not connected yet", error));
   }, []);
 
-  // Timer logic jo backend ki date par sync chalega
   useEffect(() => {
     const weddingDate = new Date(details.wedding_date).getTime();
 
@@ -97,7 +96,7 @@ const HeroCountdown = () => {
         </div>
 
         {/* Dynamic Names from Backend */}
-        <h1 className="animate-fade-up delay-100 text-6xl md:text-8xl font-bold font-serif mb-6 text-white drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] capitalize">
+        <h1 className="animate-fade-up delay-100 text-4xl sm:text-5xl md:text-8xl font-bold font-serif mb-6 text-white drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] capitalize whitespace-nowrap w-max mx-auto">
           {details.groom_name} <span className="text-amber-400 mx-2">&</span> {details.bride_name}
         </h1>
         

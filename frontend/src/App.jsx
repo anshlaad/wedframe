@@ -15,10 +15,10 @@ import SplashScreen from './components/SplashScreen';
 const AnimatedSection = ({ children, className }) => {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 60 }} // Shuru mein invisible aur thoda niche
-      whileInView={{ opacity: 1, y: 0 }} // Screen pe aate hi apni jagah par aayega
-      viewport={{ once: true, margin: "-100px" }} // Ek baar hi animate hoga, scroll karne par baar baar nahi
-      transition={{ duration: 0.8, ease: "easeOut" }} // Ekdum smooth aur royal speed
+      initial={{ opacity: 0, y: 60 }} 
+      whileInView={{ opacity: 1, y: 0 }} 
+      viewport={{ once: true, margin: "-100px" }} 
+      transition={{ duration: 0.8, ease: "easeOut" }} 
       className={className}
     >
       {children}
@@ -97,7 +97,7 @@ function App() {
         <p className="text-sm text-rose-200/60 font-serif mb-1">
           Wedding Designed & Managed By
         </p>
-        <a href="https://instagram.com/teripage" target="_blank" rel="noreferrer" className="text-lg text-amber-500 font-bold tracking-widest hover:text-amber-400 transition-colors">
+        <a href="https://instagram.com/brilliant_eventzz" target="_blank" rel="noreferrer" className="text-lg text-amber-500 font-bold tracking-widest hover:text-amber-400 transition-colors">
           BrilliantEvents
         </a>
       </footer>

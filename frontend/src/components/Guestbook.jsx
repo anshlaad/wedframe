@@ -9,16 +9,13 @@ const Guestbook = () => {
   const [status, setStatus] = useState(null);
   const API_URL = import.meta.env.VITE_API_URL || "https://wedframe-backend.onrender.com";
 
-  // Fetch Wishes (Dhyan rakhna tera API link /api/guestbook/ ya jo tune set kiya ho wo ho)
   const fetchWishes = () => {
     axios.get(`${API_URL}/api/guestbook/`)
       .then(res => setWishes(res.data))
       .catch(err => console.log(err));
   };
 
-  useEffect(() => {
-    fetchWishes();
-  }, []);
+  useEffect(() => { fetchWishes(); }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,45 +24,56 @@ const Guestbook = () => {
       .then(() => {
         setStatus("success");
         setFormData({ name: '', message: '' });
-        fetchWishes(); // Nayi wish aane par list update karo
+        fetchWishes();
+        setTimeout(() => setStatus(null), 3000); // Reset success after 3 sec
       })
       .catch(() => setStatus("error"));
   };
 
+  // Staggered Animation variants for cards
+  const containerVars = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } };
+  const itemVars = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { type: "spring" } } };
+
   return (
-    <div className="w-full max-w-3xl mx-auto px-6 text-center">
-      <h2 className="text-3xl md:text-5xl font-serif text-amber-500 mb-6">Leave a Wish</h2>
+    <div className="w-full max-w-4xl mx-auto px-6 text-center">
+      <h2 className="text-4xl md:text-5xl font-serif text-amber-500 mb-2">Blessings & Love</h2>
+      <p className="text-rose-200/60 mb-10 italic">Leave a note for the couple's new journey</p>
       
-      {/* Wish Form */}
-      <form onSubmit={handleSubmit} className="bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-rose-900/30 mb-8 flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-amber-900/30 mb-10 flex flex-col gap-6 shadow-xl relative group focus-within:border-amber-500/50 transition-colors">
         <input required type="text" placeholder="Your Name" value={formData.name}
-          className="bg-black/50 border border-rose-900/50 rounded-lg p-3 text-rose-50 focus:outline-none focus:border-amber-500"
+          className="bg-white/5 border border-rose-900/30 rounded-xl p-4 text-rose-50 focus:outline-none focus:border-amber-500 focus:bg-white/10 transition-all placeholder:text-rose-200/40"
           onChange={(e) => setFormData({...formData, name: e.target.value})} />
-        <textarea required placeholder="Your Message for the Couple..." rows="3" value={formData.message}
-          className="bg-black/50 border border-rose-900/50 rounded-lg p-3 text-rose-50 focus:outline-none focus:border-amber-500"
+        <textarea required placeholder="Write your heartfelt wishes here..." rows="3" value={formData.message}
+          className="bg-white/5 border border-rose-900/30 rounded-xl p-4 text-rose-50 focus:outline-none focus:border-amber-500 focus:bg-white/10 transition-all placeholder:text-rose-200/40 resize-none"
           onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
-        <button type="submit" className="bg-amber-700/80 hover:bg-amber-600 text-rose-50 py-3 rounded-lg font-semibold transition-all">
-          {status === "submitting" ? "Posting..." : "Post Wish"}
+        
+        <button type="submit" className="bg-rose-900/80 hover:bg-amber-600 text-rose-50 py-4 rounded-xl font-bold tracking-wide transition-all border border-rose-700 hover:border-amber-400">
+          {status === "submitting" ? "Sending Love..." : status === "success" ? "Wish Sent! ❤️" : "Drop Your Wish"}
         </button>
-        {status === "success" && <p className="text-green-400 mt-2 text-sm">Wish posted successfully!</p>}
       </form>
 
-      {/* Toggle Button */}
-      <button onClick={() => setShowWishes(!showWishes)} className="border border-amber-500/50 text-amber-500 px-6 py-2 rounded-full hover:bg-amber-500/10 transition-all">
-        {showWishes ? "Hide Wishes" : `Read Wishes (${wishes.length})`}
+      <button onClick={() => setShowWishes(!showWishes)} 
+        className="flex items-center gap-2 mx-auto border-b-2 border-amber-500 text-amber-400 pb-1 hover:text-amber-300 transition-colors uppercase tracking-widest text-sm font-bold">
+        {showWishes ? "Hide Messages" : `Read Guest Messages (${wishes.length})`}
       </button>
 
-      {/* Hidden Wishes List */}
       <AnimatePresence>
         {showWishes && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-8 flex flex-col gap-4 text-left overflow-hidden">
+          <motion.div variants={containerVars} initial="hidden" animate="show" exit="hidden" 
+            className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 text-left"
+          >
             {wishes.map((wish, index) => (
-              <div key={index} className="bg-rose-950/20 border border-rose-900/30 p-4 rounded-xl">
-                <h4 className="font-bold text-amber-400">{wish.name}</h4>
-                <p className="text-rose-100/90 mt-1 italic">"{wish.message}"</p>
-              </div>
+              <motion.div key={index} variants={itemVars} 
+                className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-rose-900/30 p-6 rounded-2xl hover:border-amber-500/40 hover:-translate-y-2 transition-all group overflow-hidden"
+              >
+                {/* Decorative Quote Mark */}
+                <div className="absolute top-2 right-4 text-6xl text-amber-500/10 font-serif group-hover:text-amber-500/20 transition-colors">"</div>
+                <p className="text-rose-100/90 leading-relaxed mb-4 italic relative z-10">{wish.message}</p>
+                <div className="w-10 h-[1px] bg-amber-500/50 mb-3"></div>
+                <h4 className="font-bold text-amber-400 tracking-wide">{wish.name}</h4>
+              </motion.div>
             ))}
-            {wishes.length === 0 && <p className="text-center text-rose-200/50">No wishes yet. Be the first!</p>}
+            {wishes.length === 0 && <p className="text-center text-rose-200/50 col-span-full">The book is empty. Be the first to write a wish!</p>}
           </motion.div>
         )}
       </AnimatePresence>
