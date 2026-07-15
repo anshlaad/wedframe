@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WeddingDetail, FunctionFolder, GalleryImage, ProgramEvent
+from .models import WeddingDetail, FunctionFolder, GalleryImage, ProgramEvent, GuestMessage, RSVP
 
 @admin.register(WeddingDetail)
 class WeddingDetailAdmin(admin.ModelAdmin):
@@ -18,3 +18,14 @@ class GalleryImageAdmin(admin.ModelAdmin):
 class ProgramEventAdmin(admin.ModelAdmin):
     list_display = ('name', 'date_text', 'time_text', 'order')
     list_editable = ('order',)
+
+@admin.register(GuestMessage)
+class GuestMessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'message', 'created_at')
+    search_fields = ('name',)
+
+@admin.register(RSVP)
+class RSVPAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone', 'is_attending', 'guests_count', 'submitted_at')
+    list_filter = ('is_attending',)
+    search_fields = ('name', 'phone')

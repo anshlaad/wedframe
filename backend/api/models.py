@@ -61,3 +61,34 @@ class ProgramEvent(models.Model):
 
     def __str__(self):
         return self.name
+    
+# 5. Guestbook / Digital Wishes
+class GuestMessage(models.Model):
+    name = models.CharField(max_length=100)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at'] # Naye messages sabse upar dikhenge
+
+    def __str__(self):
+        return f"Wish from {self.name}"
+
+# 6. Dynamic RSVP System
+class RSVP(models.Model):
+    ATTENDANCE_CHOICES = [
+        ('Yes', 'Yes, I will attend'),
+        ('No', 'Sorry, I cannot attend'),
+    ]
+    
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    is_attending = models.CharField(max_length=10, choices=ATTENDANCE_CHOICES, default='Yes')
+    guests_count = models.PositiveIntegerField(default=1, help_text="Kitne log aa rahe hain?")
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-submitted_at']
+
+    def __str__(self):
+        return f"{self.name} - {self.is_attending} ({self.guests_count} Guests)"
