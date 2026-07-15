@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Guestbook = () => {
+const Guestwish = () => {
   const [wishes, setWishes] = useState([]);
   const [showWishes, setShowWishes] = useState(false);
   const [formData, setFormData] = useState({ name: '', message: '' });
@@ -73,4 +73,4 @@ const Guestbook = () => {
   );
 };
 
-export default Guestbook;
+export default Guestwish;
