@@ -5,7 +5,7 @@ import HeroCountdown from './components/HeroCountdown';
 import FunctionGalleries from './components/FunctionGalleries'; 
 import SwipeGallery from './components/SwipeGallery';
 import ProgramDetails from './components/ProgramDetails';
-import Guestwish from './components/Guestwish';
+import Guestbook from './components/Guestbook';
 import RSVP from './components/RSVP';
 import VenueMap from './components/VenueMap';
 import FloatingMusic from './components/FloatingMusic';
@@ -86,7 +86,7 @@ function App() {
       </AnimatedSection>
 
       <AnimatedSection className="w-full py-12 md:py-20 bg-black/10 border-y border-rose-900/30">
-        <Guestwish />
+        <Guestbook />
       </AnimatedSection>
 
       <AnimatedSection className="w-full">
