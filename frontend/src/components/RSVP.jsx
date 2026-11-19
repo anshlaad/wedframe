@@ -26,7 +26,6 @@ const RSVP = () => {
       >
         You're Invited
       </motion.h2>
-      <p className="text-rose-200/80 mb-10 tracking-widest uppercase text-sm">Please RSVP by 1st March</p>
       
       <AnimatePresence mode="wait">
         {status === "success" ? (
