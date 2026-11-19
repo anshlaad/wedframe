@@ -42,3 +42,23 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .delay-100 { animation-delay: 100ms; opacity: 0; }
 .delay-200 { animation-delay: 200ms; opacity: 0; }
 .delay-300 { animation-delay: 300ms; opacity: 0; }
+
+/* Auto-Slide Animation for Wedding Itinerary */
+@keyframes autoSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-auto-slide {
+  display: flex;
+  width: max-content;
+  animation: autoSlide 22s linear infinite;
+}
+
+.animate-auto-slide:hover {
+  animation-play-state: paused;
+}
