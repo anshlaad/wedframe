@@ -8,7 +8,7 @@ import ProgramDetails from './components/ProgramDetails';
 import Guestbook from './components/Guestbook';
 import RSVP from './components/RSVP';
 import VenueMap from './components/VenueMap';
-import FloatingMusic from './components/FloatingMusic';
+//import FloatingMusic from './components/FloatingMusic';
 import SplashScreen from './components/SplashScreen';
 
 // 🌟 Magical Scroll Animation Wrapper
@@ -37,7 +37,7 @@ function App() {
 
     <div className="w-full bg-linear-to-b from-[#1a0906] via-[#2d110f] to-[#1a0906] overflow-x-hidden text-rose-50 font-sans relative">
       
-      <FloatingMusic />
+      {/*<FloatingMusic />*/}
 
       {/* Hero section ko normal rakha hai kyunki usme pehle se load animations hain */}
       <section className="h-screen w-full">
