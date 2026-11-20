@@ -62,7 +62,7 @@ const HeroCountdown = () => {
       <div 
         className="absolute inset-0 z-0 scale-105 transform transition-transform duration-[10s] hover:scale-100"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2000&auto=format&fit=crop')",
+          backgroundImage: `url('${details.cover_image || "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2000&auto=format&fit=crop"}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
