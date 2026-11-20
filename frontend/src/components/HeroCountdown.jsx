@@ -5,10 +5,10 @@ import axios from 'axios'; // Backend se connect karne ke liye add kiya
 const HeroCountdown = () => {
   // Backend se data aane tak ka default state (tumhari nayi date ke sath)
   const [details, setDetails] = useState({
-    groom_name: "Ansh",
-    bride_name: "[Bride Name]",
-    wedding_date: "2027-01-30T19:00:00",
-    city: "Bhopal", 
+    groom_name: "Vipul",
+    bride_name: "Ragini",
+    wedding_date: "2027-01-29T19:00:00",
+    city: "Barwaha", 
     master_drive_link: "#"
   });
 

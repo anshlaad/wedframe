@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'cloudinary_storage',
+    'cloudinary',
     # 🌟 Our Custom Apps & Third-Party Packages
     'api',
     'rest_framework',
@@ -140,9 +141,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 1. CORS Setup (Allows React to fetch data from Django)
 CORS_ALLOW_ALL_ORIGINS = True 
 
-# 2. Media Setup (For handling image uploads from Admin Panel)
+# 2. Media & Cloudinary Setup (Permanent Image Storage)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 CSRF_TRUSTED_ORIGINS = [
     'https://wedframe-backend.onrender.com',
