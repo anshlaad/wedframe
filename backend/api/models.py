@@ -2,6 +2,7 @@ from django.db import models
 
 # 1. Main Wedding Details (Countdown, Hero names, Master Drive Link)
 class WeddingDetail(models.Model):
+    cover_image = models.ImageField(upload_to='covers/', blank=True, null=True)
     groom_name = models.CharField(max_length=50, default="Ansh")
     bride_name = models.CharField(max_length=50)
     wedding_date = models.DateTimeField(help_text="Format: YYYY-MM-DD HH:MM:SS")
